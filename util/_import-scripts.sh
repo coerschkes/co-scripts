@@ -3,6 +3,11 @@
 INVISIBLE_SCRIPTS_PREFIX=_
 source $SCRIPT_DIR/print/_print-colored-lib.sh
 
+if [ "$#" -ne 1 ]; then
+	print
+	exit
+fi
+
 print() {
 	echo "usage: <path>"
 }
@@ -14,14 +19,9 @@ addAlias() {
 	fi
 
 	alColored=$(printColored "purple" "$1")
-
-	if grep -Fq "$1" ~/.bash_aliases; then
-		echo "alias $alColored already registered, skipping.."
-	else
-		scriptColored=$(printColored "green" "$2")
-		echo "alias $1=$2" >>~/.bash_aliases
-		echo "alias $alColored added for script $scriptColored."
-	fi
+	scriptColored=$(printColored "green" "$2")
+	echo "alias $1=$2" >>~/.bash_aliases
+	echo "alias $alColored added for script $scriptColored."
 }
 
 getBaseName() {
@@ -31,8 +31,18 @@ getBaseName() {
 		exit 1
 	fi
 
-	ext=${1##*.}
+	ext=$(getExt $1)
 	echo $(basename $1 .$ext)
+}
+
+getExt() {
+	if [ "$#" -ne 1 ]; then
+		echo "error: getExt() invalid number of args. need [1] got [$#]"
+		echo "usage: <path>"
+		exit 1
+	fi
+
+	echo ${1##*.}
 }
 
 addAliasesForPath() {
@@ -45,17 +55,14 @@ addAliasesForPath() {
 	folder_path=$1
 
 	for file in $folder_path/*; do
-		base_name=$(getBaseName $file)
-		if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
-			script_alias=$($file alias)
-			addAlias $script_alias $file
+		if [[ -f $file ]] && [[ $(getExt $file) == "sh" ]]; then
+			base_name=$(getBaseName $file)
+			if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
+				script_alias=$($file alias)
+				addAlias $script_alias $file
+			fi
 		fi
 	done
 }
-
-if [ "$#" -ne 1 ]; then
-	print
-	exit
-fi
 
 addAliasesForPath $1
