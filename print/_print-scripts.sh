@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source $SCRIPT_DIR/lib/_base-lib.sh
+source $SCRIPT_DIR/lib/_print-colored-lib.sh
 
 print() {
 	echo 'usage: <path>'
@@ -79,7 +80,7 @@ printScripts() {
 			if [[ $(getBaseName $file) != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
 				script_alias=$($file "alias")
 				spacing="$(calculateSpacing $script_alias $max_len)"
-				base=$($SCRIPT_DIR/print/_print-colored.sh green $script_alias)
+				base=$(printColored green $script_alias)
 				usage=$($file print)
 				echo -e "$base$spacing$usage"
 			fi

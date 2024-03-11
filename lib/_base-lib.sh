@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source $SCRIPT_DIR/lib/_print-colored-lib.sh
-
 INVISIBLE_SCRIPTS_PREFIX=_
 
 isDirectory() {

@@ -1,6 +1,5 @@
 #!/bin/bash
 
-INVISIBLE_SCRIPTS_PREFIX=_
 source $SCRIPT_DIR/lib/_base-lib.sh
 
 if [ "$#" -ne 1 ]; then
