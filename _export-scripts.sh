@@ -15,15 +15,17 @@ addAlias() {
 		exit
 	fi
 
-	if grep -Fxq "$1" /home/coerschkes/.bash_aliases; then
+	if grep -Fxq "$1" /home/coerschkes/.bash_aliases
+	then
 		echo "alias $1 already registered, skipping.."
 	else
 		alColored=$(printColored "purple" "$1")
 		scriptColored=$(printColored "green" "$2")
-		#		echo "alias $1=$2" >> ~/.bash_aliases
+#		echo "alias $1=$2" >> ~/.bash_aliases
 		echo "alias $alColored added for script $scriptColored."
 	fi
 }
+
 
 if [ "$#" -ne 1 ]; then
 	print

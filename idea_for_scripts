@@ -1,9 +1,0 @@
-set symlink on ~/ for scripts
-
-give every script an additional alias method printing the desired alias
-
-on startup exec a script overrriding the current alias file located 
-in ~/.bash_aliases with aliases returned from every script alias method
-
-after reload(e.g. restarting shell?) the pc comm should print the commands
-with alias

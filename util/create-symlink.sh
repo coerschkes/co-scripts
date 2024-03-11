@@ -8,16 +8,16 @@ alias() {
 	echo "create-smlink"
 }
 
-if [ "$#" -eq 1 ]; then
-	if [ "$1" == "print" ]; then
+if [ "$#" -eq 1 ]; then 
+	if [ "$1" == "print" ]; then 
 		print
-	elif [ "$1" == "alias" ]; then
+	elif [ "$1" == "alias" ]; then 
 		alias
-	else
+	else 
 		print
 	fi
 	exit 1
-fi
+fi 
 
 if [ "$#" -ne 2 ]; then
 	print

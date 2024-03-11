@@ -4,7 +4,7 @@ print() {
 	echo "usage: <path>"
 }
 
-if [ "$#" -ne 1 ]; then
+if [ "$#" -ne 1 ]; then 
 	print
 	exit
 fi
