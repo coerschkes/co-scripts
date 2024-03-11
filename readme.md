@@ -7,8 +7,8 @@
     collection of the shellscripts i use during development
 </div>
 
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 This is a collection of shellscripts for linux environments. I use them to update dependencies, print out stuff, managing my aliases, etc..

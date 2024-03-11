@@ -1,0 +1,5 @@
+#alias update='$SCRIPT_DIR/util/update.sh'
+#alias cls='clear'
+#alias ts3='/usr/local/TeamSpeak3/ts3client_runscript.sh'
+#alias qflipper='/home/coerschkes/dev/tools/qFlipper'
+#alias update-go='$SCRIPT_DIR/util/go-install-version.sh'
