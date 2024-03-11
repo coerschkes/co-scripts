@@ -1,7 +1,7 @@
 #!/bin/bash
 
 INVISIBLE_SCRIPTS_PREFIX=_
-source $SCRIPT_DIR/print/_print-colored-lib.sh
+source $SCRIPT_DIR/lib/_base-lib.sh
 
 if [ "$#" -ne 1 ]; then
 	print
@@ -24,27 +24,6 @@ addAlias() {
 	echo "alias $alColored added for script $scriptColored."
 }
 
-getBaseName() {
-	if [ "$#" -ne 1 ]; then
-		echo "error: getBaseName() invalid number of args. need [1] got [$#]"
-		echo "usage: <path>"
-		exit 1
-	fi
-
-	ext=$(getExt $1)
-	echo $(basename $1 .$ext)
-}
-
-getExt() {
-	if [ "$#" -ne 1 ]; then
-		echo "error: getExt() invalid number of args. need [1] got [$#]"
-		echo "usage: <path>"
-		exit 1
-	fi
-
-	echo ${1##*.}
-}
-
 addAliasesForPath() {
 	if [ "$#" -ne 1 ]; then
 		echo "error: addAliasesForPath() invalid number of args. need [1] got [$#]"
@@ -52,10 +31,15 @@ addAliasesForPath() {
 		exit 1
 	fi
 
+	if [ "$(isDirectory $1)" == "false" ]; then
+		echo "error: addAliasesForPath() invalid path. need a directory got $1"
+		exit 1
+	fi
+
 	folder_path=$1
 
 	for file in $folder_path/*; do
-		if [[ -f $file ]] && [[ $(getExt $file) == "sh" ]]; then
+		if [ "$(isFile $file)" == "true" ] && [ "$(isExecutable $file)" == "true" ]; then
 			base_name=$(getBaseName $file)
 			if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
 				script_alias=$($file alias)

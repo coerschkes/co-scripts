@@ -1,20 +1,9 @@
 #!/bin/bash
 
-INVISIBLE_SCRIPTS_PREFIX=_
+source $SCRIPT_DIR/lib/_base-lib.sh
 
 print() {
 	echo 'usage: <path>'
-}
-
-getBaseName() {
-	if [ "$#" -ne 1 ]; then
-		echo "error: getBaseName() invalid number of args. need [1] got [$#]"
-		echo "usage: <path>"
-		exit 1
-	fi
-
-	ext=${1##*.}
-	echo $(basename $1 .$ext)
 }
 
 calculateSpacing() {
@@ -43,15 +32,22 @@ calculateAliasMaxLen() {
 		exit 1
 	fi
 
+	if [ "$(isDirectory $1)" == "false" ]; then
+		echo "error: addAliasesForPath() invalid path. need a directory got $1"
+		exit 1
+	fi
+
 	folder_path=$1
 	max_len=0
 
 	for file in $folder_path/*; do
-		base_name=$(getBaseName $file)
-		if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
-			script_alias=$($file alias)
-			if ((${#script_alias} > $max_len)); then
-				max_len=${#script_alias}
+		if [[ $(isFile $file) == "true" ]] && [[ $(isExecutable $file) == "true" ]]; then
+			base_name=$(getBaseName $file)
+			if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
+				script_alias=$($file alias)
+				if ((${#script_alias} > $max_len)); then
+					max_len=${#script_alias}
+				fi
 			fi
 		fi
 	done
@@ -66,6 +62,11 @@ printScripts() {
 		exit 1
 	fi
 
+	if [ "$(isDirectory $1)" == "false" ]; then
+		echo "error: addAliasesForPath() invalid path. need a directory got $1"
+		exit 1
+	fi
+
 	script_path=$1
 	max_len=$(calculateAliasMaxLen $script_path)
 
@@ -74,13 +75,14 @@ printScripts() {
 	echo "{"
 
 	for file in $script_path/*; do
-		base_name=$(getBaseName $file)
-		if [[ $base_name != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
-			script_alias=$($file alias)
-			spacing="$(calculateSpacing $script_alias $max_len)"
-			base=$($SCRIPT_DIR/print/_print-colored.sh green $script_alias)
-			usage=$($file print)
-			echo -e "$base$spacing$usage"
+		if [ "$(isFile $file)" == "true" ] && [ "$(isExecutable $file)" == "true" ]; then
+			if [[ $(getBaseName $file) != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
+				script_alias=$($file "alias")
+				spacing="$(calculateSpacing $script_alias $max_len)"
+				base=$($SCRIPT_DIR/print/_print-colored.sh green $script_alias)
+				usage=$($file print)
+				echo -e "$base$spacing$usage"
+			fi
 		fi
 	done
 
