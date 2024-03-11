@@ -16,12 +16,12 @@ if [ "$#" -eq 1 ]; then
 	else 
 		print
 	fi
-	exit
+	exit 1
 fi 
 
 if [ "$#" -ne 2 ]; then
 	print
-	exit
+	exit 1
 fi
 
 ln -s $1 $2
