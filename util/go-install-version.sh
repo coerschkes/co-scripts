@@ -1,7 +1,19 @@
 #/bin/bash
-if [ $# -ne 1 ]; then
-    echo $0: usage: version
-    exit 1
+
+print() {
+	echo "usage: <version>"
+}
+
+alias() {
+	echo "go-install"
+}
+
+if [ $# -ne 1 ] || [ "$1" == "print" ]; then
+	print
+	exit 1
+elif [ "$1" == "alias" ]; then
+	alias
+	exit 1
 fi
 
 VERSION=$1
