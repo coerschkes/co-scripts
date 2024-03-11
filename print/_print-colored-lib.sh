@@ -18,64 +18,64 @@ LIGHT_CYAN="1;36"
 WHITE="1;37"
 NC="0"
 
-setColorCode(){
+setColorCode() {
         if [ "$#" -ne 1 ]; then
                 echo "error: setColorCode() invalid number of args. need [1](<color>) got [$#]"
-		exit 1
+                exit 1
         fi
         case "$1" in
-                "black")
-                        COLOR_CODE=$BLACK
-                        ;;
-                "red")
-                        COLOR_CODE=$RED
-                        ;;
-                "green")
-                        COLOR_CODE=$GREEN
-                        ;;
-                "orange")
-                        COLOR_CODE=$ORANGE
-                        ;;
-                "blue")
-                        COLOR_CODE=$BLUE
-                        ;;
-                "purple")
-                        COLOR_CODE=$PURPLE
-                        ;;
-                "cyan")
-                        COLOR_CODE=$CYAN
-                        ;;
-                "light-gray")
-                        COLOR_CODE=$LIGHT_GRAY
-                        ;;
-                "dark-gray")
-                        COLOR_CODE=$DARK_GRAY
-                        ;;
-                "light-red")
-                        COLOR_CODE=$LIGHT_RED
-                        ;;
-                "light-green")
-                        COLOR_CODE=$LIGHT_GREEN
-                        ;;
-                "yellow")
-                        COLOR_CODE=$YELLOW
-                        ;;
-                "light-blue")
-                        COLOR_CODE=$LIGHT_BLUE
-                        ;;
-                "light-purple")
-                        COLOR_CODE=$LIGHT_PURPLE
-                        ;;
-                "light-cyan")
-                        COLOR_CODE=$LIGHT_CYAN
-                        ;;
-                "white")
-                        COLOR_CODE=$WHITE
-                        ;;
-                *)
-                        echo "color '$1' not recognized"
-                        exit 1
-                        ;;
+        "black")
+                COLOR_CODE=$BLACK
+                ;;
+        "red")
+                COLOR_CODE=$RED
+                ;;
+        "green")
+                COLOR_CODE=$GREEN
+                ;;
+        "orange")
+                COLOR_CODE=$ORANGE
+                ;;
+        "blue")
+                COLOR_CODE=$BLUE
+                ;;
+        "purple")
+                COLOR_CODE=$PURPLE
+                ;;
+        "cyan")
+                COLOR_CODE=$CYAN
+                ;;
+        "light-gray")
+                COLOR_CODE=$LIGHT_GRAY
+                ;;
+        "dark-gray")
+                COLOR_CODE=$DARK_GRAY
+                ;;
+        "light-red")
+                COLOR_CODE=$LIGHT_RED
+                ;;
+        "light-green")
+                COLOR_CODE=$LIGHT_GREEN
+                ;;
+        "yellow")
+                COLOR_CODE=$YELLOW
+                ;;
+        "light-blue")
+                COLOR_CODE=$LIGHT_BLUE
+                ;;
+        "light-purple")
+                COLOR_CODE=$LIGHT_PURPLE
+                ;;
+        "light-cyan")
+                COLOR_CODE=$LIGHT_CYAN
+                ;;
+        "white")
+                COLOR_CODE=$WHITE
+                ;;
+        *)
+                echo "color '$1' not recognized"
+                exit 1
+                ;;
         esac
 }
 
@@ -84,15 +84,15 @@ printColored() {
                 echo "error: printColored() invalid number of args. need at least two(<color> <text>) got [$#]"
                 exit 1
         fi
-	text=""
-	isColorCode=true
-	for var in "$@"; do
-		if $isColorCode; then
-			setColorCode $var
-			isColorCode=false
-			continue
-		fi
-		text=$text$var
-	done
+        text=""
+        isColorCode=true
+        for var in "$@"; do
+                if $isColorCode; then
+                        setColorCode $var
+                        isColorCode=false
+                        continue
+                fi
+                text=$text$var
+        done
         echo -e "\033[${COLOR_CODE}m${text}\033[${NC}m"
 }

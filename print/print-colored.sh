@@ -2,9 +2,9 @@
 
 source $SCRIPT_DIR/print/_print-colored-lib.sh
 
-printAvailableColors(){
-	echo "available colors"
-	echo "{"
+printAvailableColors() {
+        echo "available colors"
+        echo "{"
         printColored "black" "black"
         printColored "red" "red"
         printColored "green" "green"
@@ -21,16 +21,15 @@ printAvailableColors(){
         printColored "light-purple" "light-purple"
         printColored "light-cyan" "light-cyan"
         printColored "white" "white"
-	echo "}"
+        echo "}"
 }
 
 if [[ "$#" -lt 2 ]]; then
         echo "exptected arg number is 2, got $#"
         echo "usage: <color> <text>"
         echo ""
-	printAvailableColors
+        printAvailableColors
         exit 1
 fi
-
 
 printColored "$@"
