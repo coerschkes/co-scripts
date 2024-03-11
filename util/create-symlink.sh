@@ -5,7 +5,7 @@ print() {
 }
 
 alias() {
-	echo "create-smlink"
+	echo "create-symlink"
 }
 
 if [ "$#" -eq 1 ]; then
