@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source $SCRIPT_DIR/lib/_print-colored-lib.sh
+source $SCRIPT_DIR/lib/_print-lib.sh
 
 printAvailableColors() {
         echo "available colors"
