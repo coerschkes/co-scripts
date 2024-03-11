@@ -19,7 +19,6 @@ update_js_libs() {
 	nvm install node
 	nvm install-latest-npm
 	npm install -g @angular/cli
-	ng version
 }
 
 if [ $# -eq 1 ]; then
