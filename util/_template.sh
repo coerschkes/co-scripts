@@ -13,8 +13,6 @@ if [ "$#" -eq 1 ]; then
 		print
 	elif [ "$1" == "alias" ]; then
 		alias
-	else
-		print
 	fi
-	exit
+	exit 1
 fi
