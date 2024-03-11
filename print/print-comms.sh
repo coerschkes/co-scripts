@@ -7,7 +7,7 @@ BASE_NAME=""
 setBaseName() {
         if [ "$#" -ne 1 ]; then
                 echo 'error: getBaseName() invalid number of args. need [1] got [{$#}]'
-                exit
+                exit 1
         fi
         ext=${1##*.}
         BASE_NAME=$(basename $1 .$ext)
@@ -32,7 +32,7 @@ calculateMaxLen() {
 
 if [ "$#" -ne 1 ]; then
 	echo 'usage: <path>'
-	exit
+	exit 1
 fi
 
 FOLDER_PATH=$1
@@ -44,8 +44,6 @@ echo "{"
 calculateMaxLen
 
 for file in $FOLDER_PATH/*; do
-	#TODO: call every file with param printUsage
-	#add param check for usage in every script
 	setBaseName $file
 	calculateSpacing
 	if [[ $BASE_NAME != _* ]]; then
