@@ -20,5 +20,4 @@ fi
 
 print_script=$SCRIPT_DIR/print/_print-scripts.sh
 $print_script "$SCRIPT_DIR"
-$print_script "$SCRIPT_DIR/print"
 $print_script "$SCRIPT_DIR/util"
