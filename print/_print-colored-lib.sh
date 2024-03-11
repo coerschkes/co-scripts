@@ -18,29 +18,10 @@ LIGHT_CYAN="1;36"
 WHITE="1;37"
 NC="0"
 
-printAvailableColors(){
-	printColored "black" "black"
-        printColored "red" "red"
-        printColored "green" "green"
-        printColored "orange" "orange"
-        printColored "blue" "blue"
-        printColored "purple" "purple"
-        printColored "cyan" "cyan"
-        printColored "light-gray" "light-gray"
-        printColored "dark-gray" "dark-gray"
-        printColored "light-red" "light-red"
-        printColored "light-green" "light-green"
-        printColored "yellow" "yellow"
-        printColored "light-blue" "light-blue"
-        printColored "light-purple" "light-purple"
-        printColored "light-cyan" "light-cyan"
-        printColored "white" "white"
-}
-
 setColorCode(){
         if [ "$#" -ne 1 ]; then
                 echo "error: setColorCode() invalid number of args. need [1](<color>) got [$#]"
-		exit
+		exit 1
         fi
         case "$1" in
                 "black")
@@ -93,7 +74,7 @@ setColorCode(){
                         ;;
                 *)
                         echo "color '$1' not recognized"
-                        exit
+                        exit 1
                         ;;
         esac
 }
@@ -101,7 +82,7 @@ setColorCode(){
 printColored() {
         if [ "$#" -lt 2 ]; then
                 echo "error: printColored() invalid number of args. need at least two(<color> <text>) got [$#]"
-                exit
+                exit 1
         fi
 	text=""
 	isColorCode=true
