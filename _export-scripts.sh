@@ -1,13 +1,6 @@
 #!/bin/bash
 #todo: register alias via script
 
-#alias update='$SCRIPT_DIR/util/update.sh'
-#alias cls='clear'
-#alias ts3='/usr/local/TeamSpeak3/ts3client_runscript.sh'
-#alias qflipper='/home/coerschkes/dev/tools/qFlipper'
-#alias update-go='$SCRIPT_DIR/util/go-install-version.sh'
-
-
 # for entered path of script call get alias and add it to bash_aliases
 source $SCRIPT_DIR/print/_print-colored-lib.sh
 
@@ -28,7 +21,7 @@ addAlias() {
 	else
 		alColored=$(printColored "purple" "$1")
 		scriptColored=$(printColored "green" "$2")
-#		echo "alias $1=$2" >> /home/coerschkes/.bash_aliases
+#		echo "alias $1=$2" >> ~/.bash_aliases
 		echo "alias $alColored added for script $scriptColored."
 	fi
 }
