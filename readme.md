@@ -4,7 +4,7 @@
 <h3 align="center">co-scripts</h3>
 
   <p align="center">
-    collection of the shellscripts i use during development
+    A Collection of all my scripts I use during development and for quality of life
 </div>
 
 <!-- TABLE OF CONTENTS -->
