@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# creates a symlink from src to dest
+
 print() {
 	echo "usage: <src> <dest>"
 }

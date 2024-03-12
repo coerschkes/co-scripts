@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# prints a text in the provided color
+
 source $SCRIPT_DIR/lib/_print-lib.sh
 
 printAvailableColors() {

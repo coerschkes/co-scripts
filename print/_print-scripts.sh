@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# prints all scripts with alias and usage that are not marked as invisible inside of a directory
+
 source $SCRIPT_DIR/lib/_base-lib.sh
 source $SCRIPT_DIR/lib/_print-lib.sh
 

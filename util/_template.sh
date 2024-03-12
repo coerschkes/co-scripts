@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# simple script template used for creating new scripts
+
 print() {
 	echo "usage: <usage>"
 }

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# prints out all scripts in the specified folders
+
 print() {
 	echo ""
 }

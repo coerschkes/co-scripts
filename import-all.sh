@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# remove all bash_aliases and add them again to detect changes
 
 print() {
 	echo ""

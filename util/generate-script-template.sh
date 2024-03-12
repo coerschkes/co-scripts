@@ -1,5 +1,7 @@
 #/bin/bash
 
+# generates a new script from the template in $SCRIPT_DIR
+
 print() {
     echo "usage: <name>"
 }

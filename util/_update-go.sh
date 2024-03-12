@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# updates go to the latest version if the current version is not the latest
+
 source $SCRIPT_DIR/lib/_print-lib.sh
 
 VERSION_REGEX='go[0-9\.]+'

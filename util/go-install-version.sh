@@ -1,5 +1,7 @@
 #/bin/bash
 
+# installs a specific version of go
+
 source $SCRIPT_DIR/lib/_print-lib.sh
 
 set -euf -o pipefail

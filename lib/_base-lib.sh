@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# function lib for base operations
+
 INVISIBLE_SCRIPTS_PREFIX=_
 
 isDirectory() {

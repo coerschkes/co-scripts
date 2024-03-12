@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# function lib for printing colored text
+
 BLACK="0;30"
 RED="0;31"
 GREEN="0;32"

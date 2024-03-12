@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# searches for an apt package with the given name
+
 print() {
         echo "usage: <search-string>"
 }

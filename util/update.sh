@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# updates all dependencies specified
+
 print() {
 	echo ""
 }
