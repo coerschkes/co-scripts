@@ -44,5 +44,6 @@ sudo apt update &&
 	sudo snap refresh &&
 	#update nordvpn
 	sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &&
+	$SCRIPT_DIR/util/_update-go.sh &&
 	#update js stuff
 	update_js_libs

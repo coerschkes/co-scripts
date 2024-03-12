@@ -1,5 +1,11 @@
 #/bin/bash
 
+source $SCRIPT_DIR/lib/_print-lib.sh
+
+set -euf -o pipefail
+
+VERSION_REGEX='go[0-9\.]+'
+
 print() {
 	echo "usage: <version>"
 }
@@ -17,11 +23,21 @@ elif [ "$1" == "alias" ]; then
 fi
 
 VERSION=$1
-VERSION_FILE=go$VERSION.linux-amd64.tar.gz
+VERSION_FILE=$VERSION.linux-amd64.tar.gz
 DOWNLOAD_ADDR=https://go.dev/dl/
 
-sudo rm -rf /usr/local/go
-wget $DOWNLOAD_ADDR$VERSION_FILE
-sudo tar -C /usr/local -xzf $VERSION_FILE
-rm $VERSION_FILE
-go version
+if [[ "$VERSION" =~ $VERSION_REGEX ]]; then
+	vcolored=$(printColored purple $1) 
+	echo "now downloading version $vcolored.."
+	wget --quiet --continue --show-progress "$DOWNLOAD_ADDR$VERSION_FILE"
+	echo "removing old version.."
+	sudo rm -rf /usr/local/go
+	echo "installing new version.."
+	sudo tar -C /usr/local -xzf $VERSION_FILE
+	echo "installation complete! cleaning up.."
+	rm $VERSION_FILE
+	go version
+else
+	echo "entered version is not a go version"
+	exit 1
+fi
