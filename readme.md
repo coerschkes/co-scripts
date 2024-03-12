@@ -31,8 +31,17 @@ This is a collection of shellscripts for linux environments. I use them to updat
 ## Getting Started
 
 1. Checkout the project
+```sh
+git clone https://github.com/coerschkes/co-scripts.git
+```
 2. Set the env-variable "SCRIPT_DIR" to the root of this project
+```sh
+export SCRIPT_DIR=<path-to-project>
+```
 3. Run import-all.sh to register aliases for all important scripts
+```sh
+./import-all.sh
+```
 4. Restart your shell and there you go!
 
 > **_NOTE_**  
