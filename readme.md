@@ -76,10 +76,10 @@ This will import the new script, register it with the alias returned from the **
 ## Roadmap
 
 - [ ] recursive script detection
-- [ ] description() for every script
-- [ ] print description() instead of usage when printing all
+- [X] description() for every script
+- [X] print description() instead of usage when printing all
 - [ ] calculate max-len for all script-aliases and print afterwards with fixed max-len
 - [ ] improve template and template generation
-- [ ] standard script algorithm with switch
+- [X] standard script algorithm with switch
 - [ ] script-scheme validator
 - ...
