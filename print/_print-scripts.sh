@@ -82,8 +82,8 @@ printScripts() {
 				script_alias=$($file "alias")
 				spacing="$(calculateSpacing $script_alias $max_len)"
 				base=$(printColored purple $script_alias)
-				usage=$($file print)
-				echo -e "$base$spacing$usage"
+				description=$($file description)
+				echo -e "$base$spacing$description"
 			fi
 		fi
 	done

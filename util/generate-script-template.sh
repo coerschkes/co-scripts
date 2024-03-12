@@ -1,22 +1,43 @@
 #/bin/bash
 
-# generates a new script from the template in $SCRIPT_DIR
+description() {
+    echo "generates a new script from _template.sh in $SCRIPT_DIR"
+}
 
 print() {
     echo "usage: <name>"
 }
 
-
 alias() {
     echo "new-script"
 }
 
-if [ $# -ne 1 ] || [ "$1" == "print" ]; then
+main() {
+    if [ "$#" -ne 1 ]; then
         print
         exit 1
-elif [ "$1" == "alias" ]; then
-        alias
-        exit 1
-fi
+    fi
 
-cp $SCRIPT_DIR/util/_template.sh $SCRIPT_DIR/$1.sh
+    cp $SCRIPT_DIR/util/_template.sh $SCRIPT_DIR/$1.sh
+    exit
+}
+
+if [ "$#" -eq 1 ]; then
+    case $1 in
+    "print")
+        print
+        ;;
+    "alias")
+        alias
+        ;;
+    "description")
+        description
+        ;;
+    *)
+        main "$@"
+        ;;
+    esac
+else
+    print
+fi
+exit 1

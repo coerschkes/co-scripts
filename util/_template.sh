@@ -1,20 +1,37 @@
 #!/bin/bash
 
-# simple script template used for creating new scripts
+description() {
+	echo "description"
+}
 
 print() {
-	echo "usage: <usage>"
+	echo "usage: <>"
 }
 
 alias() {
 	echo "alias"
 }
 
+main() {
+
+}
+
 if [ "$#" -eq 1 ]; then
-	if [ "$1" == "print" ]; then
+	case $1 in
+	"print")
 		print
-	elif [ "$1" == "alias" ]; then
+		;;
+	"alias")
 		alias
-	fi
+		;;
+	"description")
+		description
+		;;
+	*)
+		echo "unknown argument '$1'"
+		;;
+	esac
 	exit 1
 fi
+
+main "$@"

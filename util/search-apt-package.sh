@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# searches for an apt package with the given name
+description() {
+        echo "searches for an apt package with the given name"
+}
 
 print() {
         echo "usage: <search-string>"
@@ -10,12 +12,27 @@ alias() {
         echo "search-apt"
 }
 
-if [ $# -ne 1 ] || [ "$1" == "print" ]; then
-        print
-        exit 1
-elif [ "$1" == "alias" ]; then
-        alias
-        exit 1
-fi
+main() {
+        apt-cache search --names-only '^'$1'*'
+        exit
+}
 
-apt-cache search --names-only '^'$1'*'
+if [ "$#" -eq 1 ]; then
+        case $1 in
+        "print")
+                print
+                ;;
+        "alias")
+                alias
+                ;;
+        "description")
+                description
+                ;;
+        *)
+                main "$@"
+                ;;
+        esac
+else
+        print
+fi
+exit 1

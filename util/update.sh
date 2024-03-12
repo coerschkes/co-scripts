@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# updates all dependencies specified
+description() {
+	echo "updates all dependencies specified"
+}
 
 print() {
 	echo ""
@@ -23,29 +25,38 @@ update_js_libs() {
 	npm install -g @angular/cli
 }
 
-if [ $# -eq 1 ]; then
-	if [ "$1" == "print" ]; then
-		print
-		exit 1
-	elif [ "$1" == "alias" ]; then
-		alias
+main() {
+	if [ $# -ne 0 ]; then
+		echo "no argument expected"
 		exit 1
 	fi
-fi
 
-if [ $# -ne 0 ]; then
-	print
+	sudo apt update &&
+		sudo apt upgrade -y &&
+		sudo apt autoremove -y &&
+		sudo snap refresh &&
+		sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &&
+		$SCRIPT_DIR/util/_update-go.sh &&
+		update_js_libs
+	exit
+}
+
+if [ "$#" -eq 1 ]; then
+	case $1 in
+	"print")
+		print
+		;;
+	"alias")
+		alias
+		;;
+	"description")
+		description
+		;;
+	*)
+		echo "unknown argument $1"
+		;;
+	esac
 	exit 1
 fi
 
-#update dependencies
-sudo apt update &&
-	sudo apt upgrade -y &&
-	sudo apt autoremove -y &&
-	#update snaps
-	sudo snap refresh &&
-	#update nordvpn
-	sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh) &&
-	$SCRIPT_DIR/util/_update-go.sh &&
-	#update js stuff
-	update_js_libs
+main "$@"

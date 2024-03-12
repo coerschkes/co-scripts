@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# creates a symlink from src to dest
+description() {
+	echo "creates a symbolic link"
+}
 
 print() {
 	echo "usage: <src> <dest>"
@@ -10,20 +12,32 @@ alias() {
 	echo "create-symlink"
 }
 
-if [ "$#" -eq 1 ]; then
-	if [ "$1" == "print" ]; then
+main() {
+	if [ "$#" -ne 2 ]; then
 		print
-	elif [ "$1" == "alias" ]; then
-		alias
-	else
-		print
+		exit 1
 	fi
+
+	ln -s "$@"
+	exit
+}
+
+if [ "$#" -eq 1 ]; then
+	case $1 in
+	"print")
+		print
+		;;
+	"alias")
+		alias
+		;;
+	"description")
+		description
+		;;
+	*)
+		echo "unknown argument $1"
+		;;
+	esac
 	exit 1
 fi
 
-if [ "$#" -ne 2 ]; then
-	print
-	exit 1
-fi
-
-ln -s $1 $2
+main "$@"
