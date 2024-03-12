@@ -75,21 +75,19 @@ printScripts() {
 
 	echo "commands: $script_path"
 	echo ""
-	echo "{"
 
 	for file in $script_path/*; do
 		if [ "$(isFile $file)" == "true" ] && [ "$(isExecutable $file)" == "true" ]; then
 			if [[ $(getBaseName $file) != $INVISIBLE_SCRIPTS_PREFIX* ]]; then
 				script_alias=$($file "alias")
 				spacing="$(calculateSpacing $script_alias $max_len)"
-				base=$(printColored green $script_alias)
+				base=$(printColored purple $script_alias)
 				usage=$($file print)
 				echo -e "$base$spacing$usage"
 			fi
 		fi
 	done
 
-	echo "}"
 	echo ""
 }
 
