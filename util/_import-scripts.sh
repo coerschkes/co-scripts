@@ -21,9 +21,8 @@ addAlias() {
 	fi
 
 	alColored=$(printColored "purple" "$1")
-	scriptColored=$(printColored "green" "$2")
 	echo "alias $1=$2" >>~/.bash_aliases
-	echo "alias $alColored added for script $scriptColored."
+	echo "alias $alColored added for script $2."
 }
 
 addAliasesForPath() {
