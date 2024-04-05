@@ -9,7 +9,7 @@ print() {
 }
 
 alias() {
-	echo "ps"
+	echo "pa"
 }
 
 main() {
